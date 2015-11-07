@@ -1,6 +1,7 @@
 <html>
   <head>
     <script src="peer.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.17/p5.js"></script>
     
     <script type="text/javascript">
       var mypeerid = null;
@@ -41,7 +42,8 @@
         connection.on('data', function(data) {
           document.getElementById('chatlog').innerHTML += data;
         });
-      };  
+      }; 
+
     </script>
   </head>
   
@@ -51,5 +53,18 @@
     <input type="text" id="chat">
     <input type="button" value="Send" onclick="sendmessage()"><br />
     <div id="chatlog"></div>
+
+    <script type="text/javascript">
+
+function setup() {
+  createCanvas(720, 400);
+ 
+};
+
+function draw() {
+  
+};
+
+    </script>
   </body>
 </html>
