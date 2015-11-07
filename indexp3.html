@@ -1,11 +1,15 @@
-
+<html>
+  <head>
+    <script src="peer.min.js"></script>
+    
+    <script type="text/javascript">
       var mypeerid = null;
       var peer = null;
       var connection = null;
       
       var init = function() {
         //peer = new Peer({key: 'uohu08l7r6swcdi'});
-        peer = new Peer({host: '104.131.82.13', port: 9000, path: '/'});
+        peer = new Peer("player3",{host: '104.131.82.13', port: 9000, path: '/'});
         
         peer.on('open', function(id) {
           console.log('My peer ID is: ' + id);
@@ -38,3 +42,14 @@
           document.getElementById('chatlog').innerHTML += data;
         });
       };  
+    </script>
+  </head>
+  
+  <body onload="init()">
+    <input type="text" id="other_peer_id" value="PeerID to Call">
+    <input type="button" value="Call" onclick="placecall()"><br />
+    <input type="text" id="chat">
+    <input type="button" value="Send" onclick="sendmessage()"><br />
+    <div id="chatlog"></div>
+  </body>
+</html>
