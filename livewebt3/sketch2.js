@@ -5,9 +5,11 @@ var mapMax = 1.0;
 var paddleA, paddleB, ball, wallTop, wallBottom;
 var MAX_SPEED = 5;
 var scoreA=0,scoreB=0;
+var canvas; 
 
 function setup() {
-  createCanvas(800,400);
+  canvas =createCanvas(800,400);
+  img = loadImage("pongtable.png");
   //frameRate(6);
   input = new p5.AudioIn();
   input.start();
@@ -33,13 +35,7 @@ function setup() {
 }
 
 function draw() {
- 
-  console.log("oh!");
-            if(connected){ 
-            paddle1.position.y=map(input.getLevel()*2, 0, 1, 400, 0);
-            connection.send({id: mypeerId, role: myRole, vol:input.getLevel()});
-            console.log(input.getLevel());
-             background(0);
+  image(img, 0, 0); 
 
   //var volume = input.getLevel();
 
@@ -83,8 +79,10 @@ function draw() {
   
   drawSprites();
 
-
-          }
-
+  console.log("oh!");
+            if(connected){ 
+            paddle1.position.y=map(input.getLevel()*2, 0, 1, 400, 0);
+            connection.send({id: mypeerId, role: myRole, vol:input.getLevel()});
+          console.log(input.getLevel());}
   
 }
