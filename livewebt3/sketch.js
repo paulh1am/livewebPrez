@@ -18,10 +18,10 @@ function setup() {
   paddleB = createSprite(width-28, height/2, 10, 100);
   paddleB.immovable = true;
   
-  wallTop = createSprite(width/2, -30/2, width, 30);
+  wallTop = createSprite(width/2, -50/2, width, 30);
   wallTop.immovable = true;
   
-  wallBottom = createSprite(width/2, height+30/2, width, 30);
+  wallBottom = createSprite(width/2, height+50/2, width, 30);
   wallBottom.immovable = true;
   
   ball = createSprite(width/2, height/2, 10, 10);
@@ -77,10 +77,24 @@ function draw() {
   
   drawSprites();
 
-  console.log("oh!");
-            if(connected){ 
-            paddle1.position.y=map(input.getLevel()*2, 0, 1, 400, 0);
-            connection.send({id: mypeerId, role: myRole, vol:input.getLevel()});
-          console.log(input.getLevel());}
+  // console.log("oh!");
+  // console.log(ball.position.x)
+        if(connected){ 
+          old = paddle1.position.y;
+          mapt = map(input.getLevel()*2, 0, 1, 400, 0);
+          paddle1.position.y= lerp(old, map(input.getLevel()*2, 0, 1, 400, 0), 0.2);
+          connection.send({id: mypeerId, role: myRole, vol:input.getLevel()});
+          // console.log(input.getLevel());
+          if(myRole == 'caller')
+          {
+            connection.send({
+              ballx: ball.position.x,
+              bally: ball.position.y,
+              ballvelx: ball.velocity.x,
+              ballvely: ball.velocity.y
+            });
+            //console.log("sent"+ball.position.x );
+          }
+        }
   
 }
