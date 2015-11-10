@@ -26,7 +26,7 @@
 			
 			var init = function() {
 					
-				peer = new Peer("plaer1",{host: '104.131.82.13', port: 9000, path: '/'});
+				peer = new Peer({host: '104.131.82.13', port: 9000, path: '/'});
 				
 				peer.on('open', function(id) {
 				  console.log('My peer ID is: ' + id);
@@ -48,9 +48,15 @@
 							//I am a callee!
 							assignElement( myRole );
 						}
-						
 						var old2 = paddle2.position.y;
 						paddle2.position.y=lerp(old2, map(input.getLevel()*2, 0, 1, 400, 0), 0.2);
+						if (myRole == "callee" && "ballx" in data){
+							// console.log("data ballee check");
+							ball.position.x = data.ballx;
+              ball.position.y = data.bally;
+              ball.velocity.x = data.ballvelx;
+              ball.velocity.y = data.ballvely;
+						}
 					});
 				});
 
